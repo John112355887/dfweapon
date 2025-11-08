@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh‑CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device‑width, initial‑scale=1.0">
 <title>武器改枪码展示</title>
 <style>
 body {
@@ -20,6 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    flex-shrink: 0;
 }
 .category {
     background-color: #34495e;
@@ -29,7 +30,9 @@ body {
     cursor: pointer;
     user-select: none;
 }
-.category:hover { background-color: #1abc9c; }
+.category:hover {
+    background-color: #1abc9c;
+}
 .sidebar-buttons {
     margin-top: auto;
     display: flex;
@@ -46,22 +49,25 @@ body {
 }
 #contact-btn { background-color: #3498db; }
 #publish-btn { background-color: #2ecc71; }
-.content, .contact-page, .publish-page {
+
+.content,
+.contact-page,
+.publish-page {
     flex: 1;
     padding: 15px;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: auto;  /* 保留纵向滚动 */
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;  /* 纵向排列 */
     gap: 15px;
-    justify-content: center;
+    align-items: center;   /* 卡片居中 */
 }
 .weapon-card {
     background-color: #ecf0f1;
     border-radius: 8px;
     overflow: hidden;
-    width: 180px;       /* 类似手机屏幕宽度 */
-    height: 320px;      /* 类似手机屏幕高度，9:16比例 */
+    width: 220px;       /* 卡片宽度大一点 */
+    height: 380px;      /* 卡片高度大一点，仍纵向比例 */
     display: flex;
     flex-direction: column;
 }
@@ -75,71 +81,72 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: #bdc3c7;
-    padding: 4px 6px;
-    font-size: 14px;
+    padding: 6px 8px;
+    font-size: 15px;
 }
 .weapon-info input {
     flex: 1;
     border: none;
     background: transparent;
-    font-size: 14px;
+    font-size: 15px;
 }
 .weapon-info .rating {
     color: #f1c40f;
-    margin-left: 4px;
+    margin-left: 6px;
     white-space: nowrap;
 }
 .weapon-code {
     display: flex;
-    justify-content: space-between;
-    gap: 4px;
-    margin-top: 4px;
+    flex-direction: column;  /* 每个 code 块纵向排列 */
+    gap: 6px;
+    margin-top: 6px;
+    padding: 0 8px 8px 8px;
 }
 .weapon-code .code-block {
-    flex: 1;
     display: flex;
     align-items: center;
     background-color: #dfe6e9;
-    padding: 2px 4px;
+    padding: 4px 6px;
     border-radius: 4px;
 }
 .weapon-code .code-block input {
     flex: 1;
     border: none;
     background: transparent;
-    font-size: 12px;
+    font-size: 13px;
+    padding: 2px;
 }
 .weapon-code .code-block button {
-    margin-left: 4px;
-    padding: 2px 4px;
+    margin-left: 6px;
+    padding: 4px 6px;
     background-color: #3498db;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
 }
 .weapon-code .code-label {
-    margin-right: 2px;
-    font-size: 12px;
+    margin-right: 4px;
+    font-size: 13px;
     color: #2d3436;
 }
+
 .contact-page .weapon-card,
 .publish-page .weapon-card {
-    width: 180px;
-    height: 320px;
+    width: 220px;
+    height: 380px;
 }
-.contact-page, .publish-page {
-    display: none;
-}
+
 button.back-btn {
     margin-top: 10px;
-    padding: 5px 10px;
+    padding: 4px 8px;  /* 缩小按钮尺寸 */
     background-color: #34495e;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 14px;
 }
 </style>
 </head>
@@ -152,7 +159,7 @@ button.back-btn {
 <div class="contact-page" id="contact-page">
     <h1>联系投稿</h1>
     <div class="weapon-card">
-        <img src="联系投稿图片1.png" class="weapon-image">
+        <img src="联系投稿图片1.png" class="weapon-image" alt="">
         <div class="weapon-info">
             <input type="text" value="这里输入联系投稿说明1">
             <span class="rating">⭐⭐⭐⭐⭐</span>
@@ -171,7 +178,7 @@ button.back-btn {
         </div>
     </div>
     <div class="weapon-card">
-        <img src="联系投稿图片2.png" class="weapon-image">
+        <img src="联系投稿图片2.png" class="weapon-image" alt="">
         <div class="weapon-info">
             <input type="text" value="这里输入联系投稿说明2">
             <span class="rating">⭐⭐⭐⭐⭐</span>
@@ -195,7 +202,7 @@ button.back-btn {
 <div class="publish-page" id="publish-page">
     <h1>发布要求</h1>
     <div class="weapon-card">
-        <img src="发布说明.png" class="weapon-image">
+        <img src="发布说明.png" class="weapon-image" alt="">
         <div class="weapon-info">
             <input type="text" value="这里输入发布要求说明1">
             <span class="rating">⭐⭐⭐⭐⭐</span>
@@ -234,7 +241,7 @@ categories.forEach((name, index) => {
 
 // 添加联系投稿和发布要求按钮
 const sidebarButtons = document.createElement('div');
-sidebarButtons.className = 'sidebar-buttons';
+sidebarButtons.className = 'sidebar‑buttons';
 sidebarButtons.innerHTML = `
     <button id="contact-btn" onclick="showContact()">联系投稿</button>
     <button id="publish-btn" onclick="showPublish()">发布要求</button>
@@ -260,7 +267,7 @@ function showCategory(index) {
         const cnId = 'cn-code-' + index + '-' + i;
         const intlId = 'intl-code-' + index + '-' + i;
         card.innerHTML = `
-            <img src="${w.img}" class="weapon-image">
+            <img src="${w.img}" class="weapon-image" alt="">
             <div class="weapon-info">
                 <input type="text" value="${w.text}">
                 <span class="rating">${w.rating}</span>
@@ -314,5 +321,3 @@ showCategory(0);
 
 </body>
 </html>
-
-
