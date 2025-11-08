@@ -92,7 +92,7 @@ body {
 }
 .weapon-code {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between; /* 左右排列 */
     gap: 8px;
     padding: 10px;
 }
@@ -102,6 +102,7 @@ body {
     background-color: #dfe6e9;
     padding: 6px;
     border-radius: 4px;
+    flex: 1;
 }
 .weapon-code .code-block input {
     flex: 1;
@@ -192,18 +193,6 @@ body {
             <input type="text" value="这里输入发布要求说明1">
             <span class="rating">⭐⭐⭐⭐⭐</span>
         </div>
-        <div class="weapon-code">
-            <div class="code-block">
-                <span class="code-label">国服:</span>
-                <input type="text" value="国服改枪码示例" id="cn-publish1">
-                <button onclick="copyCode('cn-publish1')">复制</button>
-            </div>
-            <div class="code-block">
-                <span class="code-label">国际服:</span>
-                <input type="text" value="国际服改枪码示例" id="intl-publish1">
-                <button onclick="copyCode('intl-publish1')">复制</button>
-            </div>
-        </div>
     </div>
     <button class="back-btn" onclick="showMain()">返回主页面</button>
 </div>
@@ -293,7 +282,6 @@ function showPublish(){
     document.getElementById('publish-page').style.display='block';
 }
 
-// 默认显示第一分类
 showCategory(0);
 </script>
 
